@@ -1,0 +1,80 @@
+
+// CT proof of log entry exclusion, part 2
+
+computation:
+given: 
+group: G = <g, h>
+compute:
+random exponents in G: r[1:18]
+random exponents in G: xh, yh, zh, xi, yt
+random integer in [1,30000000): d1
+random integer in [1,30000000): d2
+zi := xi + 1
+maxDiff := 32000000
+xt := yt - d1
+zt := yt + d2
+xhi := xi + xh
+xht := xt + xh
+yht := yt + yh
+zhi := zi + zh
+zht := zt + zh
+xixh := xi + xh
+xtxh := xt + xh
+ytyh := yt + yh
+zizh := zi + zh
+ztzh := zt + zh
+cxi := g^xi * h^r_1 
+cxt := g^xt * h^r_2
+cxh := g^xh * h^r_3
+cxhi := g^xhi * h^r_4 
+cxht := g^xht * h^r_5 
+cyt := g^yt * h^r_6 
+cyh := g^yh * h^r_7 
+cyht := g^yht * h^r_8 
+czi := g^zi * h^r_9 
+czt := g^zt * h^r_10
+czh := g^zh * h^r_11
+czhi := g^zhi * h^r_12 
+czht := g^zht * h^r_13
+cxixh := g^(xi+xh) * h^r_14
+cxtxh := g^(xt+xh) * h^r_15
+cytyh := g^(yt+yh) * h^r_16
+czizh := g^(zi+zh) * h^r_17
+cztzh := g^(zt+zh) * h^r_18
+
+	
+proof:
+given:
+group: G = <g,h>
+integer: maxDiff
+exponent in G: r_20
+elements in G: cxi, cxt, cxh, cxhi, cxht, cyt, cyh, cyht, czi, czt, czh, czhi, czht, cxixh, cxtxh, cytyh, czizh, cztzh
+commitment to xi: cxi = g^xi * h^r_1 
+commitment to xt: cxt = g^xt * h^r_2
+commitment to xh: cxh = g^xh * h^r_3
+commitment to xhi: cxhi = g^xhi * h^r_4 
+commitment to xht: cxht = g^xht * h^r_5 
+commitment to yt: cyt = g^yt * h^r_6 
+commitment to yh: cyh = g^yh * h^r_7 
+commitment to yht: cyht = g^yht * h^r_8 
+commitment to zi: czi = g^zi * h^r_9 
+commitment to zt: czt = g^zt * h^r_10
+commitment to zh: czh = g^zh * h^r_11
+commitment to zhi: czhi = g^zhi * h^r_12 
+commitment to zht: czht = g^zht * h^r_13
+commitment to xixh: cxixh = g^(xi+xh) * h^r_14
+commitment to xtxh: cxtxh = g^(xt+xh) * h^r_15
+commitment to ytyh: cytyh = g^(yt+yh) * h^r_16
+commitment to zizh: czizh = g^(zi+zh) * h^r_17
+commitment to ztzh: cztzh = g^(zt+zh) * h^r_18
+prove knowledge of:
+exponents in G:r_4, r_14, r_5, r_15, r_8, r_16, r_12, r_17, r_13, r_18
+such that:
+cxhi = cxixh * h^(r_4-r_14)
+cxht = cxtxh * h^(r_5-r_15)
+cyht = cytyh * h^(r_8-r_16)
+czhi = czizh * h^(r_12-r_17)
+czht = cztzh * h^(r_13-r_18)
+czi = cxi * g * h^(r_9-r_1)
+range in G: 1 <= zt - yt < maxDiff
+range in G: 1 <= yt - xt < maxDiff
